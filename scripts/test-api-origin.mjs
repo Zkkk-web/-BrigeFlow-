@@ -12,8 +12,8 @@ for (const item of cases) {
     entryPoints: ['src/lib/api.ts'], bundle: true, write: false, format: 'cjs',
     define: { 'import.meta.env.DEV': JSON.stringify(item.dev), 'import.meta.env.VITE_API_BASE_URL': JSON.stringify(item.override) },
     plugins: [{ name: 'synthetic-session', setup(builder) {
-      builder.onResolve({filter: /^\.\/insforge$/}, () => ({path:'session', namespace:'test'}));
-      builder.onLoad({filter: /.*/, namespace:'test'}, () => ({contents:'export const insforge={auth:{getCurrentSession:async()=>({data:{session:null}})}};'}));
+      builder.onResolve({filter: /^\.\/localBackend$/}, () => ({path:'session', namespace:'test'}));
+      builder.onLoad({filter: /.*/, namespace:'test'}, () => ({contents:'export const localBackend={auth:{getCurrentSession:async()=>({data:{session:null}})}};'}));
     }}],
   });
   const calls=[];
